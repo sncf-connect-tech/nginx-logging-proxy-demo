@@ -38,5 +38,5 @@ Now, [with only 5 lines added to this YAML file](docker-compose.yaml), you can g
 
 Result:
 
-    httpbin_1              | 172.20.0.3 [20/Mar/2018:12:34:46 +0000] POST /post?foo=bar HTTP/1.0 200 Content-Type: application/x-www-form-urlencoded
-    nginx-logging-proxy_1  | 172.20.0.1 [20/Mar/2018:12:34:46 +0000] "POST /post?foo=bar HTTP/1.1" 200 TEST\x0D
+    httpbin_1              | 172.20.0.3 [20/Mar/2018:12:34:46 +0000] POST /post?foo=bar HTTP/1.1 200 Content-Type: application/x-www-form-urlencoded
+    nginx-logging-proxy_1  | 172.20.0.1 [20/Mar/2018:12:34:46 +0000] POST /post?foo=bar HTTP/1.1 200 req_time=0.003 body=TEST\x0D

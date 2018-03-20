@@ -2,10 +2,12 @@ version: '3'
 services:
   httpbin:
     build: ./httpbin
-  nginx-logging-proxy:
+    # This service listen on the internal network on port 8000
+  proxy:
     image: lucascimon/nginx-logging-proxy
     environment:
       PROXIED_HOST: httpbin
-      PORT: 8000
+      PROXIED_PORT: 8000
+      LISTENING_PORT: 8000
     ports:
       - "8000:8000"
