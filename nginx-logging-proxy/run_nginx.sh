@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # We define nginx configuration in a bash script in order to have access to environment variables;
-# hence, we have to escape nginx $variables.
+# hence, we must not forget to escape nginx $variables in the shell-interpreted `cat` block below.
 
 set -o pipefail -o errexit -o nounset -o xtrace
 
+DEFAULT_LOG_FORMAT='$remote_addr [$time_local] "$request" $status req_time=$request_time body=$request_body'
+
 : ${PROXIED_HOST?'Required env variable'}
 : ${PORT?'Required env variable'}
+LOG_FORMAT=${LOG_FORMAT:-$DEFAULT_LOG_FORMAT}
 
 # `log_format` reference and available variables:
 #  - http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format
@@ -28,7 +31,7 @@ http {
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
 
-    log_format main '\$remote_addr [\$time_local] "\$request" \$status \$msec \$request_body';
+    log_format main '$LOG_FORMAT';
 
     access_log /dev/stdout main;
     sendfile        on;
