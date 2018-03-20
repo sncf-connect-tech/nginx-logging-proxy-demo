@@ -3,7 +3,7 @@ services:
   httpbin:
     build: ./httpbin
   nginx-logging-proxy:
-    build: ./nginx-logging-proxy
+    image: lucascimon/nginx-logging-proxy
     environment:
       PROXIED_HOST: httpbin
       PORT: 8000

@@ -1,3 +1,5 @@
+https://hub.docker.com/r/lucascimon/nginx-logging-proxy/
+
 This simple demo aims to demonstrate how to setup a simple `nginx` Docker service
 (with `docker-compose` or `docker stack`) to log requests made to another service.
 
