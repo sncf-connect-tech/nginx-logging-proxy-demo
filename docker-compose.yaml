@@ -6,8 +6,7 @@ services:
   proxy:
     image: lucascimon/nginx-logging-proxy
     environment:
-      PROXIED_HOST: httpbin
-      PROXIED_PORT: 8000
+      PROXIED_ENDPOINT: http://httpbin:8000
       LISTENING_PORT: 8000
     ports:
       - "8000:8000"

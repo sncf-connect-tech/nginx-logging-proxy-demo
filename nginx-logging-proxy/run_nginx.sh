@@ -7,8 +7,7 @@ set -o pipefail -o errexit -o nounset -o xtrace
 
 DEFAULT_LOG_FORMAT='$remote_addr [$time_local] $request $status req_time=$request_time body=$request_body'
 
-: ${PROXIED_HOST?'Required env variable'}
-: ${PROXIED_PORT?'Required env variable'}
+: ${PROXIED_ENDPOINT?'Required env variable'}
 : ${LISTENING_PORT?'Required env variable'}
 LOG_FORMAT=${LOG_FORMAT:-$DEFAULT_LOG_FORMAT}
 
@@ -31,9 +30,7 @@ events {
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
-
     log_format main '$LOG_FORMAT';
-
     access_log /dev/stdout main;
     sendfile on;
     #tcp_nopush on;
@@ -48,7 +45,7 @@ server {
     listen ${LISTENING_PORT};
     server_name localhost;
     location / {
-        proxy_pass http://${PROXIED_HOST}:${PROXIED_PORT};
+        proxy_pass ${PROXIED_ENDPOINT};
         proxy_http_version 1.1;
     }
 }
