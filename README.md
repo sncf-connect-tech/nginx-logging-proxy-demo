@@ -28,11 +28,11 @@ Now, [with only 5 lines added to this YAML file](docker-compose.yaml), you can g
 
 - in one terminal:
 
-    docker-compose up
-    
+`docker-compose up`
+
 - in another one:
 
-    curl http://localhost:8000/post?foo=bar -d "$(echo -e 'TEST\r\n')"
+`curl http://localhost:8000/post?foo=bar -d "$(echo -e 'TEST\r\n')"`
 
 Result:
 
